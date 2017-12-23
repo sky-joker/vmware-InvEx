@@ -7,7 +7,7 @@ import atexit
 import argparse
 import openpyxl
 import re
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
 class login:
     """
@@ -179,7 +179,7 @@ def create_esxi_inventorys(mob_list, ws):
     # Inventoryカラム名セルの塗りつぶし
     fill = openpyxl.styles.PatternFill(fill_type='solid', fgColor='629BF7')
     for row in ws:
-        # ソート設定
+        # フィルター設定
         s = row[0]
         e = row[len(row) - 1]
         ws.auto_filter.ref = "%s%s:%s%s" % (s.column, s.col_idx, e.column, e.col_idx)
@@ -302,7 +302,7 @@ def create_vm_inventorys(mob_list, dp_dict, ws):
     # Inventoryカラム名セルの塗りつぶし
     fill = openpyxl.styles.PatternFill(fill_type='solid', fgColor='629BF7')
     for row in ws:
-        # ソート設定
+        # フィルター設定
         s = row[0]
         e = row[len(row) - 1]
         ws.auto_filter.ref = "%s%s:%s%s" % (s.column, s.col_idx, e.column, e.col_idx)
