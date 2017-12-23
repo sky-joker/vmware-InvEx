@@ -1,6 +1,6 @@
 # vmware-InvEx
 
-![](https://github.com/sky-joker/vmware-get-perfcounter-info/blob/master/img/output_image.png)
+![](https://github.com/sky-joker/vmware-InvEx/blob/master/img/output_image.png)
 
 vCenter上のESXiホストと仮想マシンの情報を取得してExcel(xlsx)に出力するツール
 
