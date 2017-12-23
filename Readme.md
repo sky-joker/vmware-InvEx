@@ -26,7 +26,7 @@ chmod +x vmware-InvEx.py
 ## 使い方
 
 ```bash
-$ ./vmware-InvEx -vc vcenter.local
+$ ./vmware-InvEx.py -vc vcenter.local
 $ ls output.xlsx
 output.xls
 ```
