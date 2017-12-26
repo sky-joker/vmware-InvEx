@@ -7,7 +7,7 @@ import atexit
 import argparse
 import openpyxl
 import re
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 class login:
     """
@@ -48,9 +48,9 @@ def options():
     :rtype: class
     :return: argparse.Namespace
     """
-    parser = argparse.ArgumentParser(prog='',
+    parser = argparse.ArgumentParser(prog='vmware-InvEx.py',
                                      add_help=True,
-                                     description='')
+                                     description='vCenterが管理しているESXiとVMのインベントリ情報をExcelで出力するツール')
     parser.add_argument('--version', '-v',
                         action='version',
                         version=__version__)
@@ -164,8 +164,9 @@ def create_esxi_inventorys(mob_list, ws):
         inventorys.append(mngIp.spec.ip.subnetMask)             # ESXiの管理IPサブネットマスク
         inventorys.append(mngIp.spec.mac)                       # ESXiの管理IPデバイスのMacアドレス
         inventorys.append(mngIp.spec.portgroup)                 # ESXiの管理IPのポートグループ
-        inventorys.append(mngIp.spec.ipRouteSpec.ipRouteConfig.defaultGateway) # ESXiの管理IPデフォルトGW
-        inventorys.append(",".join(sorted(host.config.network.dnsConfig.address))) # ESXiに設定されているDNS
+        if(mngIp.spec.ipRouteSpec != None):
+            inventorys.append(mngIp.spec.ipRouteSpec.ipRouteConfig.defaultGateway) # ESXiの管理IPデフォルトGW
+            inventorys.append(",".join(sorted(host.config.network.dnsConfig.address))) # ESXiに設定されているDNS
 
         # Inventoryを追加
         (lambda x: all_inventorys.append(x))(inventorys)
