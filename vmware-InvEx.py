@@ -7,7 +7,7 @@ import atexit
 import argparse
 import openpyxl
 import re
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 
 class login:
     """
@@ -213,7 +213,9 @@ def create_vm_inventorys(mob_list, dp_dict, ws):
         "ResourcePool",
         "VMwareTools Status",
         "VMwareTools Version",
-        'OS',
+        'Guest OS ID',
+        'Guest OS',
+        'Guest Family',
         "CPU Socket",
         "CPU Core",
         "CPU Reservation",
@@ -247,7 +249,9 @@ def create_vm_inventorys(mob_list, dp_dict, ws):
         inventorys.append((lambda x: x.parent.name if(x != None) else "")(vm.resourcePool)) # VMのリソース所属情報
         inventorys.append(vm.guest.toolsStatus)        # VMwareToolsステータス
         inventorys.append(vm.guest.toolsVersion)       # VMwareToolsバージョン
-        inventorys.append(vm.config.guestId)           # VMのGuestId
+        inventorys.append(vm.config.guestId)           # VMのGuest OS ID
+        inventorys.append(vm.config.guestFullName)     # VMのGuest OS
+        inventorys.append(vm.guest.guestFamily)       # VMware toolsから取得できるGuestFamily
 
         # CPU情
         inventorys.append(vm.config.hardware.numCoresPerSocket) # CPUソケット数
